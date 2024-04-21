@@ -1,0 +1,24 @@
+# Ansible Adoch command to create simple task (e.g. a file named devOps)
+ansible -i inventory all -m "shell" -a "touch devOps"
+
+#Basic Ansible Playbook Format
+---
+name: Install and Start Nginx
+hosts: all
+become: true
+
+tasks:
+  - name: Install Nginx
+    apt:
+      name: nginx
+      state: present
+  - name: Start Nginx
+    service:
+      name: nginx
+      state: started
+
+# Run Playbook
+ansible-playbook -i inventory <pass_in_here playbook_name.yml>
+
+# Create Ansible Roles
+ansible-galaxy role init <pass_in_here role_name>
